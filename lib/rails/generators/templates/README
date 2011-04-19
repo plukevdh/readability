@@ -8,6 +8,9 @@ match "readability/callback" => "controller#action", as: "name_me"
 
 so that once Readability has verified, you will be returned to this path.
 
+To access helper methods and the general query interface, be sure to include the `readabilify` call at the
+top of your controller (or in ApplicationController).
+
 To check if you have access, you can use before_filter, or simply check with the `readabilified?` method:
 before_filter :readabilified?
 
