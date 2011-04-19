@@ -18,6 +18,12 @@ you want to use Readability api methods within.
 
 The installer will give further instructions on how to configure your app once ou install.
 
+API Docs
+--------
+
+I'm working on documenting more of the code and putting together an actual API, but really, it just
+references the Readability API, found at [http://readability.com/publishers/api][1].
+
 Contribute
 ----------
 
@@ -32,3 +38,5 @@ License
 -------
 
 See MIT-LICENSE.
+
+[1]: http://readability.com/publishers/api
