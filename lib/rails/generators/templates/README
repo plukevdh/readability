@@ -1,0 +1,18 @@
+You've just installed Readability authentication. It's pretty simple to setup. Simply set the 'key' and 'secret'
+to your consumer key/secret in the readability.yml file.
+
+To start off the auth process, direct the user to the `readability_sessions_path`
+
+In your routes, set a path:
+match "readability/callback" => "controller#action", as: "name_me"
+
+so that once Readability has verified, you will be returned to this path.
+
+To check if you have access, you can use before_filter, or simply check with the `readabilified?` method:
+before_filter :readabilified?
+
+Once you want to make API calls to Readability, use the `readability` method to make calls. For example:
+
+readabilty :bookmarks, {favorite: true}  # return a listing of all the bookmarks which are favorited.
+readabilty :article, [id]  # return an article
+
