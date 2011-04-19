@@ -8,7 +8,7 @@ module Readability
       end
 
       module Config
-        def acts_as_readability
+        def readabilify
           include Readability::Helpers::Authentication
           helper Readability::Helpers::Authentication
         end
@@ -17,5 +17,5 @@ module Readability
   end
 end
 
-::ActiveRecord::Base.send :include, Readability::ActsAsReadability::Base
+::ActionController::Base.send :include, Readability::ActsAsReadability::Base
 
