@@ -8,20 +8,26 @@ class Readability::SessionController < ApplicationController
   end
 
   def new
+    session[:readability] ||= {}
+
     request_token = consumer.get_request_token(:oauth_callback => callback_url)
-    session[:request_token] = request_token
+    session[:readability][:request_token] = request_token
     redirect_to request_token.authorize_url(:oauth_callback => callback_url)
+  end
+
+  def destroy
+    dereadabilify
   end
 
   private 
   def access_token
     verifier = params[:oauth_verifier]
     
-    return nil unless session[:request_token] && verifier
-    access_token = session[:request_token].get_access_token(:oauth_verifier => verifier)
+    return nil unless session[:readability][:request_token] && verifier
+    access_token = session[:readability][:request_token].get_access_token(:oauth_verifier => verifier)
     
-    session[:readability_access] = access_token
-    session[:request_token] = nil
+    session[:readability][:readability_access] = access_token
+    session[:readability][:request_token] = nil
 
     access_token
   end

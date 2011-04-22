@@ -6,11 +6,15 @@ module Readability
       end
 
       def readability_access
-        session[:readability_access]
+        session[:readability][:readability_access]
       end
 
       def readability(resource, args = {})
         readability_client.get(resource, args)
+      end
+
+      def dereadabilify
+        session[:readability] = nil
       end
 
       def readability_client
