@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.description = "This gem/engine allows you to access Readability APIs."
   
   s.files = Dir["{app,lib,config}/**/*"] + ["MIT-LICENSE", "Rakefile", "Gemfile", "README.markdown"]
-  s.version = "0.0.2"
+  s.version = "0.0.3"
   
   s.add_dependency('yajl-ruby')
   s.add_dependency('oauth')
