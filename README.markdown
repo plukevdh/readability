@@ -13,10 +13,20 @@ in your Gemfile. `bundle`, and then run
 `rails g readability:install`
 
 This will create a `readability.yml` file in your config dir. All you'll need to configure 
-at that point is to add your consumer key/secret and then add `acts_as_readability` into controllers 
+at that point is to add your consumer key/secret and then add `readabilify` into controllers 
 you want to use Readability api methods within.
 
-The installer will give further instructions on how to configure your app once ou install.
+To check if you have access, you can use before_filter or simply check with the `readabilified?` method:
+```
+before_filter :readabilified?
+```
+
+Once you want to make API calls to Readability, use the `readability` method to make calls. For example:
+
+```
+readabilty :bookmarks, {favorite: true}  # return a listing of all the bookmarks which are favorited.
+readabilty :article, params[id]  # return an article
+```
 
 API Docs
 --------
