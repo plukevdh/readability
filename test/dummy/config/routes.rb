@@ -1,5 +1,7 @@
 Dummy::Application.routes.draw do
-  match "/readability/callback" => "test#show", as: "test_login"
+  match 'readability/logout', to: 'test#show', as: 'readability_logout'
+  match 'readability/callback', to: 'test#show', as: 'readability_callback'
+
   resource :test
   
   # The priority is based upon order of creation:
