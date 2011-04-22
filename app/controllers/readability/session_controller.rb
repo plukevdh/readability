@@ -4,7 +4,7 @@ class Readability::SessionController < ApplicationController
 
   def show
     flash[:alert] = "Could not authenticate with Readability" unless access_token
-    redirect_to "/readability/callback"
+    redirect_to readability_callback_path
   end
 
   def new
@@ -17,6 +17,7 @@ class Readability::SessionController < ApplicationController
 
   def destroy
     dereadabilify
+    redirect_to readability_logout_path
   end
 
   private 
