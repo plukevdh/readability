@@ -6,7 +6,7 @@ module Readability
       end
 
       def readability_access
-        session[:readability][:readability_access]
+        session[:readability][:readability_access] if session[:readability]
       end
 
       def readability(resource, args = {})
