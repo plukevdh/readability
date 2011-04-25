@@ -20,12 +20,13 @@ module Readability
           data = data[resource.to_s] unless resource.blank?
           data
       else
-        raise StandardError, "Could not get data."
+        raise StandardError, "Could not get data for those params."
       end
     end
 
     def format_query(resource, args)
       query = "#{BASE_API}/#{resource}"
+      query << "/#{args.delete :id}" if args.include? :id
       query << "?#{parameterize(args)}" unless args.empty?
       query
     end
