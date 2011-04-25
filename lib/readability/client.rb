@@ -17,7 +17,7 @@ module Readability
       case response
         when Net::HTTPSuccess
           data = JSON.parse(response.body)
-          data = data[resource.to_s] unless resource.blank?
+          data = data[resource.to_s] unless resource.blank? || args.include?(:id)
           data
       else
         raise StandardError, "Could not get data for those params."
@@ -25,11 +25,13 @@ module Readability
     end
 
     def format_query(resource, args)
+      options = args.dup
       query = "#{BASE_API}/#{resource}"
-      query << "/#{args.delete :id}" if args.include? :id
-      query << "?#{parameterize(args)}" unless args.empty?
+      query << "/#{options.delete :id}" if options.include? :id
+      query << "?#{parameterize(options)}" unless options.empty?
       query
     end
+    alias :to_url :format_query
 
     def parameterize(params)
       URI.escape(params.collect{|k,v| "#{k}=#{v}"}.join('&'))
