@@ -9,11 +9,16 @@ module Readability
       @token = token.dup
 
       # get available resource types
-      @resources = get
+      @resources = request
     end
 
-    def get(resource="", args={})
-      response = @token.get(format_query(resource, args))
+    def request(resource="", args={}, body={})
+      if body == {}
+        response = @token.get(format_query(resource, args))
+      else
+        response = @token.post(format_query(resource, args), parameterize(body),
+                               { 'Content-Type' => 'application/x-www-form-urlencoded' })
+      end
       case response
         when Net::HTTPSuccess
           data = JSON.parse(response.body)
@@ -23,6 +28,7 @@ module Readability
         raise StandardError, "Could not get data for those params."
       end
     end
+    alias :get :request
 
     def format_query(resource, args)
       options = args.dup
