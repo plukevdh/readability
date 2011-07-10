@@ -9,8 +9,8 @@ module Readability
         session[:readability][:readability_access] if session[:readability]
       end
 
-      def readability(resource, args = {})
-        readability_client.get(resource, args)
+      def readability(resource, args = {}, body = {})
+        readability_client.request(resource, args, body)
       end
 
       def dereadabilify
